@@ -36,7 +36,7 @@ local mappings = {
     },
     g = {
             name = '+git',
-            g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
+            g = {'<Cmd>Git<CR>', 'commits'},
             c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
             b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
             s = {'<Cmd>Telescope git_status<CR>', 'status'},
