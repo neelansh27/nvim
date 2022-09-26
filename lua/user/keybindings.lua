@@ -25,6 +25,7 @@ local mappings = {
         name = '+find',
         b = {'<Cmd>Telescope buffers<CR>', 'buffers'},
         h = {'<Cmd>Telescope help_tags<CR>', 'help tags'},
+        r = {'<Cmd>Telescope oldfiles<CR>', 'recent files'},
         f = {'<Cmd>NvimTreeToggle<CR>', 'Open File Tree'},
         p = {'<cmd>e ~/.config/nvim/init.vim<CR>', 'Edit Neovim Config'},
         c = {
@@ -80,6 +81,13 @@ local mappings = {
                 c   = {'<cmd>PlugClean<CR>', 'Remove Plugins'},
         },
     },
+        q={
+            name="+quit",
+            q={'<cmd>qa<CR>','quit from neovim'},
+            w={'<cmd>:wqa<CR>','write and quit'},
+            Q={'<cmd>!qa<CR>','force quit from neovim'},
+            Q={'<cmd>!wqa<CR>','force write and quit'},
+        },
     o = {
     name='+open',
     t={'<cmd>!kitty \'%:p:h\' &<CR>','Open Terminal Here'},

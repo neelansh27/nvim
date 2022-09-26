@@ -41,14 +41,15 @@ Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 let g:polyglot_disabled = ['scss']
 Plug 'sheerun/vim-polyglot'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-startify'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mattn/emmet-vim'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
@@ -58,7 +59,20 @@ Plug 'honza/vim-snippets'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'tpope/vim-fugitive'
+Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
+
+map <C-a> <ESC>^
+imap <C-a> <ESC>I
+map <C-e> <ESC>$
+imap <C-e> <ESC>A
+inoremap <M-f> <Esc><Space>wi
+inoremap <M-b> <Esc>bi
+inoremap <M-d> <Esc>cw
+
+" lua require("neelansh.plugins")
+" lua require("neelansh.treesitter")
+let g:lsp_settings_servers_dir='/home/ns/.config/nvim/vim-lsp-settings/servers'
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
@@ -71,10 +85,10 @@ call which_key#register('<space>', "g:which_key_map")
 call which_key#register('<space>', "g:which_key_map", 'n')
 call which_key#register('<space>', "g:which_key_map_visual", 'v')
 
-lua require("neelansh.toggleterm")
-lua require("neelansh.nvim-tree")
-lua require("neelansh.keybindings")
-
+lua require("user.toggleterm")
+lua require("user.nvim-tree")
+lua require("user.keybindings")
+lua require("user.lualine_conf")
 let g:rainbow#pairs = [['(', ')'], ['[', ']'],['{', '}']]
 let g:rainbow#max_level = 20
 
@@ -97,16 +111,16 @@ augroup END
 " inoremap <silent><expr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme = 'gruvbox'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#coc#enabled=1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 let g:Hexokinase_highlighters =['backgroundfull']
-let g:vcoolor_map = '<M-d>'
+let g:vcoolor_map = '<M-c>'
 let g:vcool_ins_rgb_map = '<M-r>'
-let g:vcool_ins_hsl_map = '<M-f>'
+let g:vcool_ins_hsl_map = '<M-C>'
 let g:vcool_ins_rgba_map = '<M-R>'
 
 let b:ale_fixers = ['eslint']

@@ -15,6 +15,7 @@ return require('packer').startup(function(use)
       use {'neoclide/coc.nvim',branch = 'master'}
       use 'wbthomason/packer.nvim'
       use 'sainnhe/sonokai'
+      use 'morhetz/gruvbox'
       use 'kyazdani42/nvim-web-devicons'
       use 'sheerun/vim-polyglot'
       use 'mhinz/vim-startify'
@@ -27,11 +28,16 @@ return require('packer').startup(function(use)
       use 'vim-airline/vim-airline'
       use 'jiangmiao/auto-pairs'
       use 'KabbAmine/vCoolor.vim'
+      use { 'honza/vim-snippets' }
       use {
     'AckslD/nvim-whichkey-setup.lua',
     requires = {'liuchengxu/vim-which-key'},
       }
       use {'rrethy/vim-hexokinase', run = 'cd ~/.local/share/nvim/site/pack/packer/start/vim-hexokinase && make hexokinase'}
-      vim.cmd('au BufEnter * HexokinaseTurnOn')
+      -- vim.cmd('au BufEnter * HexokinaseTurnOn')
+      use {
+		  'nvim-telescope/telescope.nvim',branch = '0.1.x',}
+  requires = { {'nvim-lua/plenary.nvim'} }
+      use {'tpope/vim-fugitive'}
 end)
 
