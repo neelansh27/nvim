@@ -37,11 +37,12 @@ endif
 call plug#begin()
 Plug 'neoclide/coc.nvim',{'branch':'master'}
 Plug 'sainnhe/sonokai'
-Plug 'morhetz/gruvbox'
+Plug 'ghifarit53/tokyonight-vim'
+" Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
-let g:polyglot_disabled = ['scss']
-Plug 'sheerun/vim-polyglot'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" let g:polyglot_disabled = ['scss']
+" Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-startify'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'tpope/vim-commentary'
@@ -89,6 +90,7 @@ lua require("user.toggleterm")
 lua require("user.nvim-tree")
 lua require("user.keybindings")
 lua require("user.lualine_conf")
+lua require("user.treesitter")
 let g:rainbow#pairs = [['(', ')'], ['[', ']'],['{', '}']]
 let g:rainbow#max_level = 20
 
@@ -110,6 +112,30 @@ augroup rainbow_lisp
 augroup END
 " inoremap <silent><expr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call ShowDocumentation()<CR>
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap ff  <Plug>(coc-format-selected)
+nmap ff  <Plug>(coc-format-selected)
 
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'gruvbox'
@@ -132,9 +158,13 @@ let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'typ
 " let g:sonokai_enable_italic = 0
 " let g:sonokai_transparent_background=1
 " let g:sonokai_disable_italic_comment = 0
+let g:tokyonight_transparent_background = 1
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
 
+colorscheme tokyonight
 "make background transparent in any colorscheme 
-autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
-colorscheme gruvbox
+" autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
+" colorscheme sonokai
 
 

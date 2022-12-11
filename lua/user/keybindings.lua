@@ -13,7 +13,7 @@ keymap("v", ">", ">gv", opts)
 keymap("n","..",":noh<CR>",opts)
 local wk = require('whichkey_setup')
 wk.config{
-    hide_statusline = true,
+    hide_statusline = false,
     default_keymap_settings = {
         silent=true,
         noremap=true,
@@ -53,6 +53,10 @@ local mappings = {
             e = {'<C-W>=', 'balance-window'},
             s = {'<C-W>s', 'split-window-below'},
             v = {'<C-W>v', 'split-window-vertically'},
+            H = {'<C-W>H', 'window-left'},
+            J = {'<C-W>J', 'window-bottom'},
+            K = {'<C-W>K', 'window-top'},
+            L = {'<C-W>L', 'window-right'},
 },
         s={
             name = '+sessions',
@@ -84,9 +88,9 @@ local mappings = {
         q={
             name="+quit",
             q={'<cmd>qa<CR>','quit from neovim'},
-            w={'<cmd>:wqa<CR>','write and quit'},
-            Q={'<cmd>!qa<CR>','force quit from neovim'},
-            Q={'<cmd>!wqa<CR>','force write and quit'},
+            w={'<cmd>wqa<CR>','write and quit'},
+            Q={'<cmd>qa!<CR>','force quit from neovim'},
+            W={'<cmd>wqa!<CR>','force write and quit'},
         },
     o = {
     name='+open',
