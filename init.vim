@@ -38,7 +38,7 @@ call plug#begin()
 Plug 'neoclide/coc.nvim',{'branch':'master'}
 Plug 'sainnhe/sonokai'
 Plug 'ghifarit53/tokyonight-vim'
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 " let g:polyglot_disabled = ['scss']
 " Plug 'sheerun/vim-polyglot'
@@ -48,7 +48,6 @@ Plug 'akinsho/toggleterm.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mattn/emmet-vim'
-Plug 'junegunn/rainbow_parentheses.vim'
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
@@ -65,6 +64,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+
 call plug#end()
 
 map <C-a> <ESC>^
@@ -95,25 +96,17 @@ lua require("user.nvim-tree")
 lua require("user.keybindings")
 lua require("user.lualine_conf")
 lua require("user.treesitter")
-let g:rainbow#pairs = [['(', ')'], ['[', ']'],['{', '}']]
-let g:rainbow#max_level = 20
-
-
+lua require("user.bufferline")
 function! CheckBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-snippets' ]
 let g:coc_snippet_next = '<tab>'
-
 "emmet
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<M-,>'
 
-augroup rainbow_lisp
-  autocmd!
-  autocmd FileType * RainbowParentheses
-augroup END
 " inoremap <silent><expr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -141,34 +134,32 @@ nmap <leader>rn <Plug>(coc-rename)
 xmap ff  <Plug>(coc-format-selected)
 nmap ff  <Plug>(coc-format-selected)
 
-let g:airline_powerline_fonts = 0
-let g:airline_theme = 'gruvbox'
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#coc#enabled=1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline_powerline_fonts = 0
+" let g:airline_theme = 'gruvbox'
+" let g:airline#extensions#tabline#enabled=1
+" let g:airline#extensions#coc#enabled=1
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 let g:Hexokinase_highlighters =['backgroundfull']
 let g:vcoolor_map = '<M-c>'
 let g:vcool_ins_rgb_map = '<M-r>'
 let g:vcool_ins_hsl_map = '<M-C>'
 let g:vcool_ins_rgba_map = '<M-R>'
-
 let b:ale_fixers = ['eslint']
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
 
-" let g:sonokai_style = 'andromeda'
-" let g:sonokai_enable_italic = 0
-" let g:sonokai_transparent_background=1
-" let g:sonokai_disable_italic_comment = 0
-let g:tokyonight_transparent_background = 1
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
+let g:sonokai_style = 'andromeda'
+let g:sonokai_enable_italic = 1
+let g:sonokai_transparent_background=1
+let g:sonokai_disable_italic_comment = 0
+" let g:tokyonight_transparent_background = 1
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
 
-colorscheme tokyonight
 "make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
-" colorscheme sonokai
+" colorscheme tokyonight
 
-
+colorscheme sonokai
