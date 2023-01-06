@@ -27,6 +27,7 @@ local mappings = {
         h = {'<Cmd>Telescope help_tags<CR>', 'help tags'},
         r = {'<Cmd>Telescope oldfiles<CR>', 'recent files'},
         f = {'<Cmd>NvimTreeToggle<CR>', 'Open File Tree'},
+        F = {'<Cmd>Telescope find_files cwd=~<CR>', 'Find Files'},
         p = {'<cmd>e ~/.config/nvim/init.vim<CR>', 'Edit Neovim Config'},
         c = {
             name = '+commands',
@@ -70,6 +71,7 @@ local mappings = {
             name = '+buffer' ,
             k = {'<cmd>bd<CR>'        , 'delete-buffer'},
             f = {'<cmd>bfirst<CR>'    , 'first-buffer'},
+            b = {'<cmd>Telescope buffers<cr>' , 'Show-buffers'},
             h = {'<cmd>Startify<CR>'  , 'home-buffer'},
             l = {'<cmd>blast<CR>'     , 'last-buffer'},
             n = {'<cmd>bnext<CR>'     , 'next-buffer'},
@@ -87,10 +89,11 @@ local mappings = {
     },
         q={
             name="+quit",
-            q={'<cmd>qa<CR>','quit from neovim'},
-            w={'<cmd>wqa<CR>','write and quit'},
+            q={'<cmd>q<CR>','quit from current window'},
+            a={'<cmd>qa<CR>','quit from neovim'},
+            w={'<cmd>wq<CR>','write and quit from current window'},
+            W={'<cmd>wq<CR>','write and quit from neovim'},
             Q={'<cmd>qa!<CR>','force quit from neovim'},
-            W={'<cmd>wqa!<CR>','force write and quit'},
         },
     o = {
     name='+open',

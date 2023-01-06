@@ -61,6 +61,10 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 map <C-a> <ESC>^
@@ -70,7 +74,7 @@ imap <C-e> <ESC>A
 inoremap <M-f> <Esc><Space>wi
 inoremap <M-b> <Esc>bi
 inoremap <M-d> <Esc>cw
-
+let g:multi_cursor_select_all_word_key = '<M-n>'
 " lua require("neelansh.plugins")
 " lua require("neelansh.treesitter")
 let g:lsp_settings_servers_dir='/home/ns/.config/nvim/vim-lsp-settings/servers'
@@ -99,7 +103,7 @@ function! CheckBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
+let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-snippets' ]
 let g:coc_snippet_next = '<tab>'
 
 "emmet
