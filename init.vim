@@ -35,39 +35,48 @@ if has("autocmd")
 endif
 
 call plug#begin()
-Plug 'neoclide/coc.nvim',{'branch':'master'}
 Plug 'sainnhe/sonokai'
 Plug 'ghifarit53/tokyonight-vim'
 Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
-" let g:polyglot_disabled = ['scss']
-" Plug 'sheerun/vim-polyglot'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-startify'
 Plug 'akinsho/toggleterm.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mattn/emmet-vim'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'AckslD/nvim-whichkey-setup.lua'
-Plug 'honza/vim-snippets'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'mlaursen/vim-react-snippets'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
-
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'L3MON4D3/LuaSnip', {'tag': 'v<CurrentMajor>.*'}
+Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'rafamadriz/friendly-snippets'
 call plug#end()
+" press <Tab> to expand or jump in a snippet. These can also be mapped separately
+" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+" -1 for jumping backwards.
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+" For changing choices in choiceNodes (not strictly necessary for a basic setup).
+imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+set completeopt=menu,menuone,noselect
 map <C-a> <ESC>^
 imap <C-a> <ESC>I
 map <C-e> <ESC>$
@@ -97,42 +106,43 @@ lua require("user.keybindings")
 lua require("user.lualine_conf")
 lua require("user.treesitter")
 lua require("user.bufferline")
+lua require("user.lspconfig")
+lua require('user.completion')
+lua require("user.luasnips")
 function! CheckBackSpace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-snippets' ]
-let g:coc_snippet_next = '<tab>'
 "emmet
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<M-,>'
 
 " inoremap <silent><expr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" " GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call ShowDocumentation()<CR>
-function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
-  else
-    call feedkeys('K', 'in')
-  endif
-endfunction
+" nnoremap <silent> K :call ShowDocumentation()<CR>
+" function! ShowDocumentation()
+"   if CocAction('hasProvider', 'hover')
+"     call CocActionAsync('doHover')
+"   else
+"     call feedkeys('K', 'in')
+"   endif
+" endfunction
 
-nmap <leader>rn <Plug>(coc-rename)
+" nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap ff  <Plug>(coc-format-selected)
-nmap ff  <Plug>(coc-format-selected)
+" " Formatting selected code.
+" xmap ff  <Plug>(coc-format-selected)
+" nmap ff  <Plug>(coc-format-selected)
 
 " let g:airline_powerline_fonts = 0
 " let g:airline_theme = 'gruvbox'
@@ -146,7 +156,7 @@ let g:vcool_ins_rgb_map = '<M-r>'
 let g:vcool_ins_hsl_map = '<M-C>'
 let g:vcool_ins_rgba_map = '<M-R>'
 let b:ale_fixers = ['eslint']
-command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+" command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
 
