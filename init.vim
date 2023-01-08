@@ -28,7 +28,7 @@ set foldmethod=indent
 set foldlevel=99
 set whichwrap+=<,>,[,],h,l
 set iskeyword+=#
-
+set completeopt=menu,menuone,noselect
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
@@ -60,37 +60,15 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'L3MON4D3/LuaSnip', {'tag': 'v<CurrentMajor>.*'}
+Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 call plug#end()
-" press <Tab> to expand or jump in a snippet. These can also be mapped separately
-" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
-" -1 for jumping backwards.
-inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
-
-snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
-snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-
-" For changing choices in choiceNodes (not strictly necessary for a basic setup).
-imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-set completeopt=menu,menuone,noselect
-map <C-a> <ESC>^
-imap <C-a> <ESC>I
-map <C-e> <ESC>$
-imap <C-e> <ESC>A
-inoremap <M-f> <Esc><Space>wi
-inoremap <M-b> <Esc>bi
-inoremap <M-d> <Esc>cw
-let g:multi_cursor_select_all_word_key = '<M-n>'
-" lua require("neelansh.plugins")
-" lua require("neelansh.treesitter")
-let g:lsp_settings_servers_dir='/home/ns/.config/nvim/vim-lsp-settings/servers'
 
 let g:mapleader = "\<Space>"
 let g:maplocalleader = ','
+lua require("user.keybindings")
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
@@ -99,23 +77,54 @@ vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 call which_key#register('<space>', "g:which_key_map")
 call which_key#register('<space>', "g:which_key_map", 'n')
 call which_key#register('<space>', "g:which_key_map_visual", 'v')
+" press <Tab> to expand or jump in a snippet. These can also be mapped separately
+" via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
+imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+" -1 for jumping backwards.
+inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+" For changing choices in choiceNodes (not strictly necessary for a basic setup).
+imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+map <C-a> <ESC>^
+imap <C-a> <ESC>I
+map <C-e> <ESC>$
+imap <C-e> <ESC>A
+inoremap <M-f> <Esc><Space>wi
+inoremap <M-b> <Esc>bi
+inoremap <M-d> <Esc>cw
+" let g:multi_cursor_select_all_word_key = '<M-n>'
+" lua require("neelansh.plugins")
+" lua require("neelansh.treesitter")
+" let g:lsp_settings_servers_dir='/home/ns/.config/nvim/vim-lsp-settings/servers'
+
+let g:Hexokinase_highlighters =['backgroundfull']
+let g:vcoolor_map = '<M-c>'
+let g:vcool_ins_rgb_map = '<M-r>'
+let g:vcool_ins_hsl_map = '<M-C>'
+let g:vcool_ins_rgba_map = '<M-R>'
+let b:ale_fixers = ['eslint']
+let g:user_emmet_mode='a'
+let g:user_emmet_leader_key='<M-,>'
+
+let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
+
 
 lua require("user.toggleterm")
 lua require("user.nvim-tree")
-lua require("user.keybindings")
 lua require("user.lualine_conf")
 lua require("user.treesitter")
 lua require("user.bufferline")
 lua require("user.lspconfig")
 lua require('user.completion')
 lua require("user.luasnips")
-function! CheckBackSpace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! CheckBackSpace() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 "emmet
-let g:user_emmet_mode='a'
-let g:user_emmet_leader_key='<M-,>'
 
 " inoremap <silent><expr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>
 " inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
@@ -150,20 +159,15 @@ let g:user_emmet_leader_key='<M-,>'
 " let g:airline#extensions#coc#enabled=1
 " let g:airline#extensions#tabline#formatter = 'unique_tail'
 
-let g:Hexokinase_highlighters =['backgroundfull']
-let g:vcoolor_map = '<M-c>'
-let g:vcool_ins_rgb_map = '<M-r>'
-let g:vcool_ins_hsl_map = '<M-C>'
-let g:vcool_ins_rgba_map = '<M-R>'
-let b:ale_fixers = ['eslint']
 " command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
-let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
 
 let g:sonokai_style = 'andromeda'
 let g:sonokai_enable_italic = 1
 let g:sonokai_transparent_background=1
 let g:sonokai_disable_italic_comment = 0
+colorscheme sonokai
+" highlight NormalSB  ctermfg=NONE ctermbg=NONE cterm=NONE 
 " let g:tokyonight_transparent_background = 1
 " let g:tokyonight_style = 'night' " available: night, storm
 " let g:tokyonight_enable_italic = 1
@@ -172,4 +176,3 @@ let g:sonokai_disable_italic_comment = 0
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
 " colorscheme tokyonight
 
-colorscheme sonokai
