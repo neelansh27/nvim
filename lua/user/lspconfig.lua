@@ -34,41 +34,51 @@ local on_attach = function(client, bufnr)
 end
 
 local lsp_flags = {
-    -- This is the default in Nvim 0.7+
     debounce_text_changes = 150,
 }
-
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics, {
+    update_in_insert = true,
+    virtual_text = false,
+    underline = true,
+    signs = true,
+}
+)
+-- Show diagnostics on hover
+-- vim.o.updatetime = 1500
+-- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 --border customization
 local _border = "single"
-
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, {
     border = _border,
 }
 )
-
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help, {
     border = _border,
 }
 )
-
 vim.diagnostic.config {
     float = { border = _border }
 }
-
 require('lspconfig.ui.windows').default_options = {
     border = _border
 }
+--Underlining on Errors
+vim.cmd[[ 
+"autocmd CursorHold * lua vim.lsp.diagnostic.show_
+]]
 --Icons
-local signs = { Error= " ", Warn=" ",Info = " ",Hint = "ﴞ " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+-- local signs = { Error= " ", Warn=" ",Info = " ",Hint = "" }
 for typeof, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. typeof
-    vim.fn.sign_define(hl,{text=icon,texthl=hl,numhl=hl})
+    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 --Server settings
 require('lspconfig.ui.windows').default_options.background = "None"

@@ -98,7 +98,11 @@ local mappings = {
     o = {
     name='+open',
     t={'<cmd>!kitty \'%:p:h\' &<CR>','Open Terminal Here'},
-    b={'<Cmd>!firefox \'%\'& <CR>','Open File in browser'}
+    b={'<Cmd>!firefox \'%\'& <CR>','Open File in browser'},
+    },
+    l ={
+        name='+lsp',
+        r={"<cmd>lua vim.lsp.buf.rename()<CR>",'rename variable'},
     }
 }
 wk.register_keymap('leader', mappings)

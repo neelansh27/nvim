@@ -33,14 +33,13 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
-
 call plug#begin()
-Plug 'sainnhe/sonokai'
+" Plug 'sainnhe/sonokai'
 Plug 'ghifarit53/tokyonight-vim'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify', {'branch': 'center'}
 Plug 'akinsho/toggleterm.nvim'
 Plug 'tpope/vim-commentary'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -93,10 +92,20 @@ imap <C-a> <ESC>I
 map <C-e> <ESC>$
 imap <C-e> <ESC>A
 inoremap <M-f> <Esc><Space>wi
-inoremap <M-b> <Esc>bi
-inoremap <M-d> <Esc>cw
-" let g:multi_cursor_select_all_word_key = '<M-n>'
-" lua require("neelansh.plugins")
+" Doesn't Work for some reason
+" inoremap <M-b> <Esc>bi
+" inoremap <M-d> <Esc>cw
+
+lua require("user.toggleterm")
+lua require("user.nvim-tree")
+lua require("user.lualine_conf")
+lua require("user.treesitter")
+lua require("user.bufferline")
+lua require("user.lspconfig")
+lua require("user.luasnips")
+lua require('user.completion')
+let g:multi_cursor_select_all_word_key = '<A-n>'
+" lua require("neelansh.plugins") 
 " lua require("neelansh.treesitter")
 " let g:lsp_settings_servers_dir='/home/ns/.config/nvim/vim-lsp-settings/servers'
 
@@ -108,18 +117,30 @@ let g:vcool_ins_rgba_map = '<M-R>'
 let b:ale_fixers = ['eslint']
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<M-,>'
+let g:startify_custom_header =
+          \ 'startify#center(startify#fortune#cowsay())'
 
-let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
+let g:startify_fortune_use_unicode = 1
+let g:startify_files_number=8
+let g:startify_enable_special = 0
+let g:startify_bookmarks = ['~/Programs']
+" \ { 'type': 'dir',       'header': startify#center(['MRU '.getcwd()]) },
+let g:startify_lists = [
+            \ { 'type': 'bookmarks', 'header': ['Bookmarks'], 'indices':['p','b','c','d','e','f','g','h','i','j','k']},
+    \ { 'type': 'sessions',  'header': ['Sessions'] , 'indices': range(1,10)},
+    \ { 'type': 'files',     'header': ['Recent Files'], 'indices': range(1,10) },
+    \ { 'type': 'commands',  'header': ['Commands'], 'indices': range(1,10)},
+    \ ]
+let g:startify_padding_left = 03 " Hard coded padding for lists
+" let g:startify_lists = [
+"     \ { 'type': 'bookmarks', 'header': startify#center(['Bookmarks']), 'indices': range(1,10)},
+"     \ { 'type': 'sessions',  'header': startify#center(['Sessions']) , 'indices': range(1,10)},
+"     \ { 'type': 'files',     'header': startify#center(['Recent Files']), 'indices': range(1,10) },
+"     \ { 'type': 'commands',  'header': startify#center(['Commands']), 'indices': range(1,10)},
+"     \ ]
+" let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
 
 
-lua require("user.toggleterm")
-lua require("user.nvim-tree")
-lua require("user.lualine_conf")
-lua require("user.treesitter")
-lua require("user.bufferline")
-lua require("user.lspconfig")
-lua require('user.completion')
-lua require("user.luasnips")
 " function! CheckBackSpace() abort
 "   let col = col('.') - 1
 "   return !col || getline('.')[col - 1]  =~# '\s'
@@ -162,17 +183,14 @@ lua require("user.luasnips")
 " command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-let g:sonokai_transparent_background=1
-let g:sonokai_disable_italic_comment = 0
-colorscheme sonokai
-" highlight NormalSB  ctermfg=NONE ctermbg=NONE cterm=NONE 
-" let g:tokyonight_transparent_background = 1
-" let g:tokyonight_style = 'night' " available: night, storm
-" let g:tokyonight_enable_italic = 1
-
+" let g:sonokai_style = 'andromeda'
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_transparent_background=1
+" let g:sonokai_disable_italic_comment = 0
+" colorscheme sonokai
+let g:tokyonight_transparent_background = 1
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+colorscheme tokyonight
 "make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
-" colorscheme tokyonight
-
