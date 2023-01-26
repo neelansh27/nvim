@@ -84,7 +84,17 @@ end
 require('lspconfig.ui.windows').default_options.background = "None"
 
 require 'lspconfig'.clangd.setup {
+    on_attach = on_attach,
     capabilities = capabilities,
+    flags = lsp_flags,
+}
+require('lspconfig')['rust_analyzer'].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+    settings={
+        ["rust-analyzer"]={}
+    }
 }
 require('lspconfig')['pyright'].setup {
     on_attach = on_attach,

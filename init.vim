@@ -35,8 +35,8 @@ if has("autocmd")
 endif
 call plug#begin()
 " Plug 'sainnhe/sonokai'
-Plug 'ghifarit53/tokyonight-vim'
-" Plug 'morhetz/gruvbox'
+" Plug 'ghifarit53/tokyonight-vim'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-startify', {'branch': 'center'}
@@ -83,7 +83,7 @@ imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-o
 inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
 snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
-
+imap <C-s> <ESC>:w<CR>i
 " For changing choices in choiceNodes (not strictly necessary for a basic setup).
 imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
@@ -106,8 +106,6 @@ lua require("user.luasnips")
 lua require('user.completion')
 let g:multi_cursor_select_all_word_key = '<A-n>'
 " lua require("neelansh.plugins") 
-" lua require("neelansh.treesitter")
-" let g:lsp_settings_servers_dir='/home/ns/.config/nvim/vim-lsp-settings/servers'
 
 let g:Hexokinase_highlighters =['backgroundfull']
 let g:vcoolor_map = '<M-c>'
@@ -126,8 +124,8 @@ let g:startify_enable_special = 0
 let g:startify_bookmarks = ['~/Programs']
 " \ { 'type': 'dir',       'header': startify#center(['MRU '.getcwd()]) },
 let g:startify_lists = [
-            \ { 'type': 'bookmarks', 'header': ['Bookmarks'], 'indices':['p','b','c','d','e','f','g','h','i','j','k']},
-    \ { 'type': 'sessions',  'header': ['Sessions'] , 'indices': range(1,10)},
+            \ { 'type': 'bookmarks', 'header': ['Bookmarks'], 'indices':['p']},
+    \ { 'type': 'sessions',  'header': ['Sessions'] , 'indices': ['a','b','c','d','e','f','g','h','i','j','k']},
     \ { 'type': 'files',     'header': ['Recent Files'], 'indices': range(1,10) },
     \ { 'type': 'commands',  'header': ['Commands'], 'indices': range(1,10)},
     \ ]
@@ -138,49 +136,6 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 "     \ { 'type': 'files',     'header': startify#center(['Recent Files']), 'indices': range(1,10) },
 "     \ { 'type': 'commands',  'header': startify#center(['Commands']), 'indices': range(1,10)},
 "     \ ]
-" let g:startify_lists = [{ 'type': 'sessions',  'header': ['   Sessions']},{ 'type': 'files',     'header': ['   Recent files']   },{ 'type': 'dir',       'header': ['   MRU '. getcwd()] },	  { 'type': 'bookmarks', 'header': ['   Bookmarks']},{ 'type': 'commands',  'header': ['   Commands']},]
-
-
-" function! CheckBackSpace() abort
-"   let col = col('.') - 1
-"   return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
-"emmet
-
-" inoremap <silent><expr>  pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>
-" inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
-" nmap <silent> [g <Plug>(coc-diagnostic-prev)
-" nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" " GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-" nnoremap <silent> K :call ShowDocumentation()<CR>
-" function! ShowDocumentation()
-"   if CocAction('hasProvider', 'hover')
-"     call CocActionAsync('doHover')
-"   else
-"     call feedkeys('K', 'in')
-"   endif
-" endfunction
-
-" nmap <leader>rn <Plug>(coc-rename)
-
-" " Formatting selected code.
-" xmap ff  <Plug>(coc-format-selected)
-" nmap ff  <Plug>(coc-format-selected)
-
-" let g:airline_powerline_fonts = 0
-" let g:airline_theme = 'gruvbox'
-" let g:airline#extensions#tabline#enabled=1
-" let g:airline#extensions#coc#enabled=1
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-
-" command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 
 
 " let g:sonokai_style = 'andromeda'
@@ -188,9 +143,10 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 " let g:sonokai_transparent_background=1
 " let g:sonokai_disable_italic_comment = 0
 " colorscheme sonokai
-let g:tokyonight_transparent_background = 1
-let g:tokyonight_style = 'night' " available: night, storm
-let g:tokyonight_enable_italic = 1
-colorscheme tokyonight
+" let g:tokyonight_transparent_background = 1
+" let g:tokyonight_style = 'night' " available: night, storm
+" let g:tokyonight_enable_italic = 1
+" colorscheme tokyonight
+lua require("user.gruvbox")
 "make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
