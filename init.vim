@@ -34,8 +34,7 @@ if has("autocmd")
     \| exe "normal! g'\"" | endif
 endif
 call plug#begin()
-" Plug 'sainnhe/sonokai'
-" Plug 'ghifarit53/tokyonight-vim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ellisonleao/gruvbox.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -142,11 +141,7 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 " let g:sonokai_enable_italic = 1
 " let g:sonokai_transparent_background=1
 " let g:sonokai_disable_italic_comment = 0
-" colorscheme sonokai
-" let g:tokyonight_transparent_background = 1
-" let g:tokyonight_style = 'night' " available: night, storm
-" let g:tokyonight_enable_italic = 1
-" colorscheme tokyonight
-lua require("user.gruvbox")
 "make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
+lua require("user.tokyonight")
+" lua require("user.gruvbox")

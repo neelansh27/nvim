@@ -105,6 +105,7 @@ local mappings = {
     l ={
         name='+lsp',
         r={"<cmd>lua vim.lsp.buf.rename()<CR>",'rename variable'},
+        c={"<Cmd>lua vim.lsp.buf.code_action()<CR>", 'Code Actions'},
     }
 }
 wk.register_keymap('leader', mappings)
