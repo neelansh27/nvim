@@ -7,6 +7,7 @@ keymap("", "<Space>", "<Nop>", opts)
 keymap("n","<M-.>","<Cmd>NvimTreeToggle<CR>",opts)
 keymap("n","<M-h>","<Cmd>bprevious<CR>",opts)
 keymap('n',"<C-s>","<Cmd>w<CR>",opts)
+keymap('v',"<C-S-y>","\"+y",opts) --Copy to clipboardplus
 keymap("n","<M-l>",":bnext<CR>",opts)
 keymap("v", "p", '"_dP', opts)
 keymap("v", "<", "<gv", opts)
@@ -28,8 +29,8 @@ local mappings = {
         b = {'<Cmd>Telescope buffers<CR>', 'buffers'},
         h = {'<Cmd>Telescope help_tags<CR>', 'help tags'},
         r = {'<Cmd>Telescope oldfiles<CR>', 'recent files'},
-        f = {'<Cmd>NvimTreeToggle<CR>', 'Open File Tree'},
-        F = {'<Cmd>Telescope find_files cwd=~<CR>', 'Find Files'},
+        f = {'<Cmd>Telescope find_files<CR>', 'Open File Tree'},
+        F = {'<Cmd>NvimTreeToggle<CR>', 'Find Files'},
         p = {'<cmd>e ~/.config/nvim/init.vim<CR>', 'Edit Neovim Config'},
         c = {
             name = '+commands',

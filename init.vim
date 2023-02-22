@@ -72,6 +72,7 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
+vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 call which_key#register('<space>', "g:which_key_map")
 call which_key#register('<space>', "g:which_key_map", 'n')
 call which_key#register('<space>', "g:which_key_map_visual", 'v')
@@ -143,5 +144,5 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 " let g:sonokai_disable_italic_comment = 0
 "make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
-lua require("user.tokyonight")
-" lua require("user.gruvbox")
+" lua require("user.tokyonight")
+lua require("user.gruvbox")
