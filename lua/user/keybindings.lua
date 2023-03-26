@@ -4,8 +4,10 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
-keymap("n","<M-.>",":NvimTreeToggle<CR>",opts)
-keymap("n","<M-h>",":bprevious<CR>",opts)
+keymap("n","<M-.>","<Cmd>NvimTreeToggle<CR>",opts)
+keymap("n","<M-h>","<Cmd>bprevious<CR>",opts)
+keymap('n',"<C-s>","<Cmd>w<CR>",opts)
+keymap('v',"<C-S-y>","\"+y",opts) --Copy to clipboardplus
 keymap("n","<M-l>",":bnext<CR>",opts)
 keymap("v", "p", '"_dP', opts)
 keymap("v", "<", "<gv", opts)
@@ -23,11 +25,12 @@ wk.config{
 local mappings = {
      f = {
         name = '+find',
+        s = {'<Cmd>w<CR>', 'Save File'},
         b = {'<Cmd>Telescope buffers<CR>', 'buffers'},
         h = {'<Cmd>Telescope help_tags<CR>', 'help tags'},
         r = {'<Cmd>Telescope oldfiles<CR>', 'recent files'},
-        f = {'<Cmd>NvimTreeToggle<CR>', 'Open File Tree'},
-        F = {'<Cmd>Telescope find_files cwd=~<CR>', 'Find Files'},
+        t = {'<Cmd>Telescope find_files<CR>', 'Open File Tree'},
+        f = {'<Cmd>NvimTreeToggle<CR>', 'Find Files'},
         p = {'<cmd>e ~/.config/nvim/init.vim<CR>', 'Edit Neovim Config'},
         c = {
             name = '+commands',
@@ -98,7 +101,12 @@ local mappings = {
     o = {
     name='+open',
     t={'<cmd>!kitty \'%:p:h\' &<CR>','Open Terminal Here'},
-    b={'<Cmd>!firefox \'%\'& <CR>','Open File in browser'}
+    b={'<Cmd>!firefox \'%\'& <CR>','Open File in browser'},
+    },
+    l ={
+        name='+lsp',
+        r={"<cmd>lua vim.lsp.buf.rename()<CR>",'rename variable'},
+        c={"<Cmd>lua vim.lsp.buf.code_action()<CR>", 'Code Actions'},
     }
 }
 wk.register_keymap('leader', mappings)
