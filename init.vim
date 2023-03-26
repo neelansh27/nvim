@@ -62,6 +62,7 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+" Plug 'jmcomets/vim-pony'
 call plug#end()
 
 let g:mapleader = "\<Space>"
