@@ -145,5 +145,5 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 " let g:sonokai_disable_italic_comment = 0
 "make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
-" lua require("user.tokyonight")
-lua require("user.gruvbox")
+lua require("user.tokyonight")
+" lua require("user.gruvbox")
