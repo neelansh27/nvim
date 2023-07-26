@@ -11,6 +11,7 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
+    print("Lsp has begun...")
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
@@ -120,6 +121,12 @@ require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
 }
 require 'lspconfig'.lua_ls.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+}
+require 'lspconfig'.jdtls.setup {
+    cmd = { 'jdtls' },
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,

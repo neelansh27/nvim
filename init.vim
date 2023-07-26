@@ -55,13 +55,16 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
+Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+Plug 'hrsh7th/cmp-path'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+Plug 'sbdchd/neoformat'
 " Plug 'jmcomets/vim-pony'
 call plug#end()
 
@@ -79,7 +82,7 @@ call which_key#register('<space>', "g:which_key_map", 'n')
 call which_key#register('<space>', "g:which_key_map_visual", 'v')
 " press <Tab> to expand or jump in a snippet. These can also be mapped separately
 " via <Plug>luasnip-expand-snippet and <Plug>luasnip-jump-next.
-imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+imap <silent><expr> <Tab> luasnip#expand_or_locally_jumpable()? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
 " -1 for jumping backwards.
 inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
 snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
@@ -88,14 +91,6 @@ imap <C-s> <ESC>:w<CR>i
 " For changing choices in choiceNodes (not strictly necessary for a basic setup).
 imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
 smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
-map <C-a> <ESC>^
-imap <C-a> <ESC>I
-map <C-e> <ESC>$
-imap <C-e> <ESC>A
-inoremap <M-f> <Esc><Space>wi
-" Doesn't Work for some reason
-" inoremap <M-b> <Esc>bi
-" inoremap <M-d> <Esc>cw
 
 lua require("user.toggleterm")
 lua require("user.nvim-tree")
@@ -147,3 +142,4 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
 lua require("user.tokyonight")
 " lua require("user.gruvbox")
+
