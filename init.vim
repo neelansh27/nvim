@@ -100,8 +100,9 @@ lua require("user.bufferline")
 lua require("user.lspconfig")
 lua require("user.luasnips")
 lua require('user.completion')
+lua require("user.telescope")
+
 let g:multi_cursor_select_all_word_key = '<A-n>'
-" lua require("neelansh.plugins") 
 
 let g:Hexokinase_highlighters =['backgroundfull']
 let g:vcoolor_map = '<M-c>'
