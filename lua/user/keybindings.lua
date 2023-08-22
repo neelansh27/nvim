@@ -45,6 +45,7 @@ local mappings = {
             c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
             b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
             s = {'<Cmd>Telescope git_status<CR>', 'status'},
+            f = {'<Cmd>Telescope git_files<CR>', 'Find Files in Git repo'},
         },
         w = {
             name = '+window',
