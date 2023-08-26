@@ -56,14 +56,14 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
+Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'rafamadriz/friendly-snippets'
-Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'sbdchd/neoformat'
 " Plug 'jmcomets/vim-pony'
 call plug#end()
