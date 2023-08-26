@@ -7,8 +7,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     print("Lsp has begun...")
@@ -49,7 +47,6 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- vim.o.updatetime = 1500
 -- vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
 
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 --border customization
@@ -71,9 +68,9 @@ require('lspconfig.ui.windows').default_options = {
     border = _border
 }
 --Underlining on Errors
-vim.cmd[[ 
-"autocmd CursorHold * lua vim.lsp.diagnostic.show_
-]]
+-- vim.cmd[[ 
+-- "autocmd CursorHold * lua vim.lsp.diagnostic.show_
+-- ]]
 --Icons
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 -- local signs = { Error= " ", Warn=" ",Info = " ",Hint = "" }
@@ -82,7 +79,7 @@ for typeof, icon in pairs(signs) do
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 --Server settings
-require('lspconfig.ui.windows').default_options.background = "None"
+-- require('lspconfig.ui.windows').default_options.background = "None"
 
 require 'lspconfig'.clangd.setup {
     on_attach = on_attach,
@@ -110,6 +107,7 @@ require('lspconfig')['cssls'].setup {
 }
 require('lspconfig')['html'].setup {
     on_attach = on_attach,
+    filetypes = {"html", "htmldjango"},
     flags = lsp_flags,
     capabilities = capabilities,
 }
