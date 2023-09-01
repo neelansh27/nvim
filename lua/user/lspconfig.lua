@@ -105,6 +105,12 @@ require('lspconfig')['cssls'].setup {
     flags = lsp_flags,
     capabilities = capabilities,
 }
+require 'lspconfig'.tailwindcss.setup {
+    cmd = {"tailwindcss-language-server", "--stdio"},
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
 require('lspconfig')['html'].setup {
     on_attach = on_attach,
     filetypes = {"html", "htmldjango"},
