@@ -95,9 +95,10 @@ local mappings = {
             name="+quit",
             q={'<cmd>q<CR>','quit from current window'},
             a={'<cmd>qa<CR>','quit from neovim'},
-            w={'<cmd>wq<CR>','write and quit from current window'},
-            W={'<cmd>wq<CR>','write and quit from neovim'},
-            Q={'<cmd>qa!<CR>','force quit from neovim'},
+            w={'<cmd>wq<CR>','write and quit from current buffer'},
+            Q={'<cmd>q!<CR>','force quit from buffer'},
+            W={'<cmd>wq!<CR>','force write and quit from buffer'},
+            A={'<cmd>qa!<CR>','force quit from neovim'},
         },
     o = {
     name='+open',
