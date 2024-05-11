@@ -16,10 +16,10 @@ set splitright
 set termguicolors
 set updatetime=300
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set number
-"set relativenumber = false
+set relativenumber
 set numberwidth=1
 set wrap
 set guifont="JetBrains Mono:h15"
@@ -49,7 +49,7 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'AckslD/nvim-whichkey-setup.lua'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.x' }
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'terryma/vim-multiple-cursors'

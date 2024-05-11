@@ -4,7 +4,7 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
-keymap("n","<M-.>","<Cmd>NvimTreeToggle<CR>",opts)
+keymap("n","<M-f>","<Cmd>NvimTreeToggle<CR>",opts)
 keymap("n","<M-h>","<Cmd>bprevious<CR>",opts)
 keymap('n',"<C-s>","<Cmd>w<CR>",opts)
 keymap('v',"<C-S-y>","\"+y",opts) --Copy to clipboardplus
