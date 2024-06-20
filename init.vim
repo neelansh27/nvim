@@ -22,7 +22,8 @@ set number
 set relativenumber
 set numberwidth=1
 set wrap
-set guifont="JetBrains Mono:h15"
+" Glyph symbols were not visible when font was fixed
+set guifont="Caskaydia Cove Nerd Font:h15"    
 set autoindent
 set foldmethod=indent
 set foldlevel=99
@@ -53,11 +54,12 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
+Plug 'akinsho/bufferline.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'mfussenegger/nvim-dap'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
@@ -101,14 +103,13 @@ lua require("user.lspconfig")
 lua require("user.luasnips")
 lua require('user.completion')
 lua require("user.telescope")
-
 let g:multi_cursor_select_all_word_key = '<A-n>'
 
 let g:Hexokinase_highlighters =['backgroundfull']
 let g:vcoolor_map = '<M-c>'
 let g:vcool_ins_rgb_map = '<M-r>'
 let g:vcool_ins_hsl_map = '<M-C>'
-let g:vcool_ins_rgba_map = '<M-R>'
+" let g:vcool_ins_rgba_map = '<M-R>'
 let b:ale_fixers = ['eslint']
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<M-,>'
@@ -118,7 +119,7 @@ let g:startify_custom_header =
 let g:startify_fortune_use_unicode = 1
 let g:startify_files_number=8
 let g:startify_enable_special = 0
-let g:startify_bookmarks = ['~/Programs']
+let g:startify_bookmarks = ['~/Code']
 " \ { 'type': 'dir',       'header': startify#center(['MRU '.getcwd()]) },
 let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['Bookmarks'], 'indices':['p']},
@@ -144,4 +145,4 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
 lua require("user.tokyonight")
 " lua require("user.gruvbox")
-
+colorscheme tokyonight

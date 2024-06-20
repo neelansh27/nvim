@@ -4,7 +4,7 @@ require("gruvbox").setup({
   undercurl = true,
   underline = true,
   bold = true,
-  italic = true,
+  -- italic = true,
   strikethrough = true,
   invert_selection = false,
   invert_signs = false,
@@ -17,4 +17,3 @@ require("gruvbox").setup({
   dim_inactive = false,
   transparent_mode = true,
 })
-vim.cmd("colorscheme gruvbox")

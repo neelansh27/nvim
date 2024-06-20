@@ -5,6 +5,7 @@ local opts = { noremap = true, silent = true }
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+
 -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 local on_attach = function(client, bufnr)
@@ -86,14 +87,15 @@ require 'lspconfig'.clangd.setup {
     capabilities = capabilities,
     flags = lsp_flags,
 }
-require('lspconfig')['rust_analyzer'].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = lsp_flags,
-    settings={
-        ["rust-analyzer"]={}
-    }
-}
+-- not conding in rust so commenting it out
+-- require('lspconfig')['rust_analyzer'].setup {
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     flags = lsp_flags,
+--     settings={
+--         ["rust-analyzer"]={}
+--     }
+-- }
 require('lspconfig')['pyright'].setup {
     on_attach = on_attach,
     capabilities = capabilities,
@@ -125,6 +127,7 @@ require('lspconfig')['tsserver'].setup {
     capabilities = capabilities,
 }
 require 'lspconfig'.lua_ls.setup {
+  cmd = {"/home/ns/Downloads/lua-language-server/bin/lua-language-server","--stdio"},
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
