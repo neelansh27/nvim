@@ -41,7 +41,11 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-startify', {'branch': 'center'}
 Plug 'akinsho/toggleterm.nvim'
+
+"Handling Comments
 Plug 'tpope/vim-commentary'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring',
+
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mattn/emmet-vim'
 Plug 'jiangmiao/auto-pairs'
@@ -66,6 +70,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'hrsh7th/cmp-path'
 Plug 'rafamadriz/friendly-snippets'
+" npm -i -g prettier
 Plug 'sbdchd/neoformat'
 " Plug 'jmcomets/vim-pony'
 call plug#end()

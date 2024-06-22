@@ -121,7 +121,7 @@ require('lspconfig')['html'].setup {
 }
 require('lspconfig')['tsserver'].setup {
     on_attach = on_attach,
-    filetypes = { "typescript", "typescript-react", "javascript", "typescript.tsx", "javascript.jsx" },
+    filetypes = { "typescriptreact", "typescript", "typescript-react", "javascript", "javascriptreact" ,"typescript.tsx", "javascript.jsx" },
     cmd = { "typescript-language-server", "--stdio" },
     flags = lsp_flags,
     capabilities = capabilities,
