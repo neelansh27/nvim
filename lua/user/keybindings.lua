@@ -109,6 +109,9 @@ local mappings = {
         name='+lsp',
         r={"<cmd>lua vim.lsp.buf.rename()<CR>",'rename variable'},
         c={"<Cmd>lua vim.lsp.buf.code_action()<CR>", 'Code Actions'},
+        i={"<Cmd>LspInfo<CR>","Lsp Info"},
+        I={"<Cmd>LspInstallInfo<CR>",'Installed Servers'},
+        R={"<Cmd>LspRestart<CR>",'Restart Servers'},
     }
 }
 wk.register_keymap('leader', mappings)

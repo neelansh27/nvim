@@ -60,6 +60,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'akinsho/bufferline.nvim'
 Plug 'neovim/nvim-lspconfig'
+" The author has archived this nvim-lsp-installer, will switch to mason in future
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'glepnir/lspsaga.nvim', { 'branch': 'main' }
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -83,6 +84,7 @@ nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 
+vmap <C-space> <cmd>lua cmp.complete()<CR>
 vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
 call which_key#register('<space>', "g:which_key_map")
 call which_key#register('<space>', "g:which_key_map", 'n')
@@ -109,7 +111,6 @@ lua require("user.luasnips")
 lua require('user.completion')
 lua require("user.telescope")
 let g:multi_cursor_select_all_word_key = '<A-n>'
-
 let g:Hexokinase_highlighters =['backgroundfull']
 let g:vcoolor_map = '<M-c>'
 let g:vcool_ins_rgb_map = '<M-r>'

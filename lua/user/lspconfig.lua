@@ -108,12 +108,18 @@ require('lspconfig')['cssls'].setup {
     capabilities = capabilities,
 }
 require 'lspconfig'.tailwindcss.setup {
-    cmd = {"tailwindcss-language-server", "--stdio"},
+
+    cmd = {
+      "/home/ns/.local/share/nvim/lsp_servers/tailwindcss_npm/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server",
+    "--stdio",
+  },
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
+    root_dir = require('lspconfig').util.root_pattern("tailwind.config.js", "package.json"),
 }
 require('lspconfig')['html'].setup {
+    cmd = {"/home/ns/.local/share/nvim/lsp_servers/html/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server",'--stdio'},
     on_attach = on_attach,
     filetypes = {"html", "htmldjango"},
     flags = lsp_flags,
@@ -122,7 +128,7 @@ require('lspconfig')['html'].setup {
 require('lspconfig')['tsserver'].setup {
     on_attach = on_attach,
     filetypes = { "typescriptreact", "typescript", "typescript-react", "javascript", "javascriptreact" ,"typescript.tsx", "javascript.jsx" },
-    cmd = { "typescript-language-server", "--stdio" },
+    -- cmd = { "typescript-language-server", "--stdio" },
     flags = lsp_flags,
     capabilities = capabilities,
 }
@@ -134,6 +140,11 @@ require 'lspconfig'.lua_ls.setup {
 }
 require 'lspconfig'.jdtls.setup {
     cmd = { 'jdtls' },
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+}
+require 'lspconfig'.prismals.setup {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
