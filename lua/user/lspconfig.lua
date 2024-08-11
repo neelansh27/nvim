@@ -144,6 +144,12 @@ require 'lspconfig'.jdtls.setup {
     capabilities = capabilities,
     flags = lsp_flags,
 }
+require 'lspconfig'.gopls.setup {
+    cmd = {"/home/ns/.local/share/nvim/lsp_servers/go/gopls"},
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+}
 require 'lspconfig'.prismals.setup {
     on_attach = on_attach,
     capabilities = capabilities,
