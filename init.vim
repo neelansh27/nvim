@@ -30,10 +30,15 @@ set foldlevel=99
 set whichwrap+=<,>,[,],h,l
 set iskeyword+=#
 set completeopt=menu,menuone,noselect
+
+"Set tabwidth to 8 for golang
+autocmd FileType go setlocal shiftwidth=8 tabstop=8
+
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g'\"" | endif
 endif
+
 call plug#begin()
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ellisonleao/gruvbox.nvim'
