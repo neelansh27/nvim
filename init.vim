@@ -7,7 +7,6 @@ set hlsearch
 set ignorecase
 set mouse=a
 set pumheight=10
-set showtabline=2
 set smartcase
 set smartindent
 set splitbelow
@@ -16,10 +15,11 @@ set splitright
 set termguicolors
 set updatetime=300
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set showtabline=4
+set shiftwidth=4
+set softtabstop=4
 set number
-" set relativenumber
+set relativenumber
 set numberwidth=1
 set wrap
 " Glyph symbols were not visible when font was fixed
@@ -30,6 +30,20 @@ set foldlevel=99
 set whichwrap+=<,>,[,],h,l
 set iskeyword+=#
 set completeopt=menu,menuone,noselect
+
+
+"Read files when modified on disk
+" Triger `autoread` when files changes on disk
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+    autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+            \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+
 
 "Set tabwidth to 8 for golang
 autocmd FileType go setlocal shiftwidth=8 tabstop=8
@@ -124,6 +138,7 @@ let g:vcool_ins_hsl_map = '<M-C>'
 let b:ale_fixers = ['eslint']
 let g:user_emmet_mode='a'
 let g:user_emmet_leader_key='<M-,>'
+let g:user_emmet_install_global = 1
 let g:startify_custom_header =
           \ 'startify#center(startify#fortune#cowsay())'
 
