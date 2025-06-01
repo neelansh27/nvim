@@ -47,7 +47,21 @@ local _border = "rounded";
 vim.diagnostic.config({
     float = { border = _border },
     update_in_insert = true,
-    virtual_text = false,
+    -- virtual_text = true,
+    virtual_text = {
+        -- https://www.reddit.com/r/neovim/comments/12qs8bo/diagnostic_virtual_text_prefix_as_function/
+        prefix = function(diagnostic)
+            if diagnostic.severity == vim.diagnostic.severity.ERROR then
+                return ""  -- Nerd font icon for error
+            elseif diagnostic.severity == vim.diagnostic.severity.WARN then
+                return ""  -- Nerd font icon for warning
+            elseif diagnostic.severity == vim.diagnostic.severity.INFO then
+                return ""  -- Nerd font icon for info
+            else
+                return ""  -- Nerd font icon for hint
+            end
+          end
+    },
     underline = true,
     signs = {
         text = {
