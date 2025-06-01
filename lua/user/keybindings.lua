@@ -9,7 +9,7 @@ keymap("n","<M-h>","<Cmd>bprevious<CR>",opts)
 keymap('n',"<C-s>","<Cmd>w<CR>",opts)
 keymap('v',"<C-S-y>","\"+y",opts) --Copy to clipboardplus
 keymap("n","<M-l>",":bnext<CR>",opts)
-keymap("v", "p", '"_dP', opts)
+-- keymap("v", "p", '"_dP', opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 keymap("n","..",":noh<CR>",opts)

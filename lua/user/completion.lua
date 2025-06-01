@@ -21,25 +21,26 @@ cmp.setup({
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       -- Ref: https://www.reddit.com/r/neovim/comments/wmkf9o/how_to_use_tab_and_shifttab_to_cycle_through/?rdt=59117
-      ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                    cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                    luasnip.expand_or_jump()
-            else
-                    fallback()
-            end
-      end, {"i", "s"}),
+      -- Use tab key for completion
+      -- ["<Tab>"] = cmp.mapping(function(fallback)
+      --       if cmp.visible() then
+      --               cmp.select_next_item()
+      --       elseif luasnip.expand_or_jumpable() then
+      --               luasnip.expand_or_jump()
+      --       else
+      --               fallback()
+      --       end
+      -- end, {"i", "s"}),
 
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                    cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                    luasnip.jump(-1)
-            else
-                    fallback()
-            end
-      end, {"i", "s"}),
+      -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+      --       if cmp.visible() then
+      --               cmp.select_prev_item()
+      --       elseif luasnip.jumpable(-1) then
+      --               luasnip.jump(-1)
+      --       else
+      --               fallback()
+      --       end
+      -- end, {"i", "s"}),
 
     }),
     sources = cmp.config.sources({
