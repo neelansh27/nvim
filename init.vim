@@ -150,9 +150,9 @@ let g:startify_bookmarks = ['~/Code']
 let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['Bookmarks'], 'indices':['p']},
     \ { 'type': 'sessions',  'header': ['Sessions'] , 'indices': ['a','b','c','d','e','f','g','h','i','j','k']},
-    \ { 'type': 'files',     'header': ['Recent Files'], 'indices': range(1,10) },
     \ { 'type': 'commands',  'header': ['Commands'], 'indices': range(1,10)},
     \ ]
+     " \ { 'type': 'files',     'header': ['Recent Files'], 'indices': range(1,10) },
 let g:startify_padding_left = 03 " Hard coded padding for lists
 " let g:startify_lists = [
 "     \ { 'type': 'bookmarks', 'header': startify#center(['Bookmarks']), 'indices': range(1,10)},

@@ -144,11 +144,12 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 --Server settings
 -- require('lspconfig.ui.windows').default_options.background = "None"
 
-require 'lspconfig'.clangd.setup {
+
+vim.lsp.config("clangd", {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
-}
+})
 -- not conding in rust so commenting it out
 -- require('lspconfig')['rust_analyzer'].setup {
 --     on_attach = on_attach,
@@ -158,19 +159,19 @@ require 'lspconfig'.clangd.setup {
 --         ["rust-analyzer"]={}
 --     }
 -- }
-require('lspconfig')['pyright'].setup {
+vim.lsp.config("pyright", {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
-}
-require('lspconfig')['cssls'].setup {
+})
+vim.lsp.config('cssls',{
     cmd = { "css-languageserver", "--stdio" },
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
-}
-require 'lspconfig'.tailwindcss.setup {
+})
 
+vim.lsp.config("tailwindcss",{
     cmd = {
         "/home/ns/.local/share/nvim/lsp_servers/tailwindcss_npm/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server",
         "--stdio",
@@ -179,41 +180,49 @@ require 'lspconfig'.tailwindcss.setup {
     flags = lsp_flags,
     capabilities = capabilities,
     root_dir = require('lspconfig').util.root_pattern("tailwind.config.js", "package.json"),
-}
-require('lspconfig')['html'].setup {
+})
+vim.lsp.config('html',{
     cmd = { "/home/ns/.local/share/nvim/lsp_servers/html/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server", '--stdio' },
     on_attach = on_attach,
     filetypes = { "html", "htmldjango" },
     flags = lsp_flags,
     capabilities = capabilities,
-}
-require('lspconfig')['ts_ls'].setup {
+})
+vim.lsp.config("ts_ls",{
     on_attach = on_attach,
     filetypes = { "typescriptreact", "typescript", "typescript-react", "javascript", "javascriptreact", "typescript.tsx", "javascript.jsx" },
     -- cmd = { "typescript-language-server", "--stdio" },
     flags = lsp_flags,
     capabilities = capabilities,
-}
-require 'lspconfig'.lua_ls.setup {
+})
+vim.lsp.config("lua_ls", {
     cmd = { "/home/ns/Downloads/lua-language-server/bin/lua-language-server", "--stdio" },
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
-}
-require 'lspconfig'.jdtls.setup {
-    cmd = { 'jdtls' },
+})
+vim.lsp.config("jdtls", {
+    cmd = { '/home/ns/.local/share/nvim/lsp_servers/jdtls/bin/jdtls' },
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
-}
-require 'lspconfig'.gopls.setup {
+})
+vim.lsp.config("gopls", {
     cmd = { "/home/ns/.local/share/nvim/lsp_servers/go/gopls" },
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
-}
-require 'lspconfig'.prismals.setup {
+})
+
+vim.lsp.config("prismals", {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = lsp_flags,
-}
+})
+
+vim.lsp.enable("clangd")
+vim.lsp.enable("jdtls")
+vim.lsp.enable("pyright")
+vim.lsp.enable("ts_ls")
+vim.lsp.enable("cssls")
+vim.lsp.enable("lua_ls")
