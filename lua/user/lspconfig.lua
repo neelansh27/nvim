@@ -39,11 +39,11 @@ local lsp_flags = {
 --     { '└', 'FloatBorder' },
 --     { '│', 'FloatBorder' },
 -- }
-local _border = "rounded";
 -- require('lspconfig.ui.windows').default_options = {
 --     border = 'single',
 -- }
 -- require('lspconfig.ui.windows').default_options.border = 'single'
+local _border = "rounded";
 vim.diagnostic.config({
     float = { border = _border },
     update_in_insert = true,
@@ -67,14 +67,15 @@ vim.diagnostic.config({
         text = {
             [vim.diagnostic.severity.ERROR] = " ",
             [vim.diagnostic.severity.WARN] = " ",
-            [vim.diagnostic.severity.INFO] = " ",
-            [vim.diagnostic.severity.HINT] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = " ",
         },
+        -- use :highlight to find highlight groups
         numhl = {
-            [vim.diagnostic.severity.ERROR] = "",
-            [vim.diagnostic.severity.WARN] = "",
-            [vim.diagnostic.severity.HINT] = "",
-            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+            [vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+            [vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+            [vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
         },
     },
 })
@@ -151,14 +152,15 @@ vim.lsp.config("clangd", {
     flags = lsp_flags,
 })
 -- not conding in rust so commenting it out
--- require('lspconfig')['rust_analyzer'].setup {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     flags = lsp_flags,
---     settings={
---         ["rust-analyzer"]={}
---     }
--- }
+vim.lsp.config('rust_analyzer', {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+    settings={
+        ["rust-analyzer"]={}
+    }
+})
+
 vim.lsp.config("pyright", {
     on_attach = on_attach,
     capabilities = capabilities,
