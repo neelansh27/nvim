@@ -109,6 +109,7 @@ local mappings = {
         name='+lsp',
         r={"<cmd>lua vim.lsp.buf.rename()<CR>",'rename variable'},
         c={"<Cmd>lua vim.lsp.buf.code_action()<CR>", 'Code Actions'},
+        h={"<Cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", 'toggle inlay hints'},
         i={"<Cmd>LspInfo<CR>","Lsp Info"},
         I={"<Cmd>LspInstallInfo<CR>",'Installed Servers'},
         R={"<Cmd>LspRestart<CR>",'Restart Servers'},

@@ -90,6 +90,8 @@ local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     print("Lsp has begun...")
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- types for function params and stuff
+    vim.lsp.inlay_hint.enable(true);
 
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
