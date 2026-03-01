@@ -1,12 +1,15 @@
--- https://github.com/hrsh7th/nvim-cmp/blob/main/doc/cmp.txt
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
 local docops = function()
-    local opts = cmp.config.window.bordered();
+    local opts = cmp.config.window.bordered({
+        border = "rounded",
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+    });
     -- opts['max_width'] = 30;
     return opts
 end
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
@@ -17,15 +20,21 @@ cmp.setup({
             -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
         end,
     },
+
     window = {
-        completion = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+            border = "rounded",
+            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
+        }),
         documentation = docops(),
     },
+
     view = {
         docs = {
             auto_open = false,
         },
     },
+
     mapping = cmp.mapping.preset.insert({
         ['<M-d>'] = function()
             if cmp.visible_docs() then
@@ -62,6 +71,7 @@ cmp.setup({
         -- end, {"i", "s"}),
 
     }),
+
     sources = cmp.config.sources({
         { name = 'nvim_lsp', max_item_count = 200 },
         { name = 'luasnip' }, -- For luasnip users.

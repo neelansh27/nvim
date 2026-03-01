@@ -54,8 +54,11 @@ if has("autocmd")
 endif
 
 call plug#begin()
+"themes
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'ellisonleao/gruvbox.nvim'
+Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
+
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'mhinz/vim-startify', {'branch': 'center'}
@@ -92,6 +95,7 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'rafamadriz/friendly-snippets'
 " npm -i -g prettier
+Plug 'MeanderingProgrammer/render-markdown.nvim'
 Plug 'sbdchd/neoformat'
 " Plug 'jmcomets/vim-pony'
 call plug#end()
@@ -170,6 +174,6 @@ let g:startify_padding_left = 03 " Hard coded padding for lists
 
 " make background transparent in any colorscheme 
 " autocmd VimEnter * highlight Normal ctermbg=NONE guibg=NONE
-lua require("user.tokyonight")
+lua require("user.rose-pine")
 " lua require("user.gruvbox")
-colorscheme tokyonight
+colorscheme rose-pine

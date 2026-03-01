@@ -227,6 +227,7 @@ vim.lsp.config("prismals", {
 vim.lsp.enable("clangd")
 vim.lsp.enable("jdtls")
 vim.lsp.enable("pyright")
+vim.lsp.enable("gopls")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("cssls")
 vim.lsp.enable("lua_ls")
