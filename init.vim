@@ -60,7 +60,10 @@ Plug 'ellisonleao/gruvbox.nvim'
 Plug 'rose-pine/neovim', { 'as': 'rose-pine' }
 
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+"using master branch for treesitter cuz couldn't find how to set up new api
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate', 'branch': 'master' } 
+
 Plug 'mhinz/vim-startify', {'branch': 'center'}
 Plug 'akinsho/toggleterm.nvim'
 
