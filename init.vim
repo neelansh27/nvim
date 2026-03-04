@@ -8,28 +8,39 @@ set ignorecase
 set mouse=a
 set pumheight=10
 set smartcase
-set smartindent
 set splitbelow
 set undofile
 set splitright
 set termguicolors
 set updatetime=300
-set expandtab
-set showtabline=4
-set shiftwidth=4
-set softtabstop=4
 set number
 set relativenumber
 set numberwidth=1
 set wrap
 " Glyph symbols were not visible when font was fixed
 set guifont="Caskaydia Cove Nerd Font:h15"    
-set autoindent
 set foldmethod=indent
 set foldlevel=99
 set whichwrap+=<,>,[,],h,l
 set iskeyword+=#
+set noshowmode
 set completeopt=menu,menuone,noselect
+
+" Indentation and positioning
+set autoindent
+set smartindent
+set expandtab
+set autoindent
+set showtabline=4
+set shiftwidth=4
+set softtabstop=4
+"https://stackoverflow.com/questions/4521818/automatically-insert-a-matching-brace-in-vim
+inoremap {<CR> {<CR>}<Esc>ko
+inoremap (<CR> (<CR>)<Esc>ko
+inoremap [<CR> [<CR>]<Esc>ko<tab>
+
+"Set tabwidth to 8 for golang
+autocmd FileType go setlocal shiftwidth=8 tabstop=8
 
 
 "Read files when modified on disk
@@ -43,10 +54,6 @@ set completeopt=menu,menuone,noselect
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-
-
-"Set tabwidth to 8 for golang
-autocmd FileType go setlocal shiftwidth=8 tabstop=8
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -73,7 +80,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring',
 
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mattn/emmet-vim'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'liuchengxu/vim-which-key'

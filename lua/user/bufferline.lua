@@ -7,7 +7,7 @@ bufferline.setup {
             -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
             style = 'none', -- 'icon' | 'underline' | 'none',
         },
-        buffer_close_icon = '󰅙 ',
+        buffer_close_icon = '󰅙',
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
             local icon = (level:match("error") and "") or (level:match("warning") and "") or ""
